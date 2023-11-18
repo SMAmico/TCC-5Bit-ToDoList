@@ -150,3 +150,124 @@ class TaskHistory {
         }
     }
 }
+
+import java.util.Scanner;
+
+class Node {
+    String description;
+    String priority;
+    String date;
+    Node next;
+    Node prev;
+
+    Node(String description, String priority, String date) {
+        this.description = description;
+        this.priority = priority;
+        this.date = date;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+class ToDoList {
+    Node head;
+    Node tail;
+
+    ToDoList() {
+        head = null;
+        tail = null;
+    }
+
+    void addTask(String description, String priority, String date) {
+        Node newTask = new Node(description, priority, date);
+        if (head == null) {
+            head = newTask;
+            tail = newTask;
+        } else {
+            tail.next = newTask;
+            newTask.prev = tail;
+            tail = newTask;
+        }
+    }
+
+    void removeTask(String description) throws Exception {
+        if (head == null) {
+            throw new Exception("The list is empty.");
+        }
+        Node current = head;
+        while (current != null) {
+            if (current.description.equals(description)) {
+                if (current.prev == null) {
+                    head = current.next;
+                } else {
+                    current.prev.next = current.next;
+                }
+                if (current.next == null) {
+                    tail = current.prev;
+                } else {
+                    current.next.prev = current.prev;
+                }
+                return;
+            }
+            current = current.next;
+        }
+        throw new Exception("The task does not exist.");
+    }
+
+    void viewTasks() {
+        if (head == null) {
+            System.out.println("The list is empty.");
+            return;
+        }
+        Node current = head;
+        while (current != null) {
+            System.out.println("Description: " + current.description);
+            System.out.println("Priority: " + current.priority);
+            System.out.println("Date: " + current.date);
+            System.out.println();
+            current = current.next;
+        }
+    }
+
+    public static void main(String[] args) {
+        ToDoList toDoList = new ToDoList();
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Enter 1 to add a task.");
+            System.out.println("Enter 2 to remove a task.");
+            System.out.println("Enter 3 to view tasks.");
+            System.out.println("Enter 4 to exit.");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter description: ");
+                    String description = scanner.nextLine();
+                    System.out.print("Enter priority (low, medium, high): ");
+                    String priority = scanner.nextLine();
+                    System.out.print("Enter date (MM/DD/YYYY): ");
+                    String date = scanner.nextLine();
+                    toDoList.addTask(description, priority, date);
+                    break;
+                case 2:
+                    System.out.print("Enter description: ");
+                    String descriptionToRemove = scanner.nextLine();
+                    try {
+                        toDoList.removeTask(descriptionToRemove);
+                        System.out.println("Task removed successfully.");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 3:
+                    toDoList.viewTasks();
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+    }
+}
