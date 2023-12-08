@@ -69,6 +69,8 @@ public class GroupProjectJames {
 				for (int i = 0; i < tasks.size(); i++) {
 					System.out.println("Task:");
 					System.out.println((i + 1) + ". " + tasks.get(i)); 
+					System.out.println("--------------------------------");
+
 				}
 			} else if (input.equals("4")) {
 				System.out.println("--------------------------------");
