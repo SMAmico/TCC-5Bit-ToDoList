@@ -23,7 +23,7 @@ public class GroupProjectJames {
 			// System.out.println("--------------------------------"); for style if you
 			// wanted to add
 			System.out.println("Please select an option number:");
-			System.out.println("Task added will be given numbers to be able to call");
+			System.out.println("Task added will be in numbers to be able to call");
 			System.out.println("--------------------------------");
 			System.out.println("1. Add task");
 			System.out.println("2. Remove task");
@@ -67,10 +67,8 @@ public class GroupProjectJames {
 				System.out.println("All tasks:");
 				System.out.println("--------------------------------");
 				for (int i = 0; i < tasks.size(); i++) {
-					System.out.println("--------------------------------");
-					System.out.println("Task listed:");
+					System.out.println("Task:");
 					System.out.println((i + 1) + ". " + tasks.get(i)); 
-					System.out.println("--------------------------------");
 				}
 			} else if (input.equals("4")) {
 				System.out.println("--------------------------------");
