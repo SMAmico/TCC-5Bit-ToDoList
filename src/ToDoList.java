@@ -38,7 +38,15 @@ class ToDoList {
 	//another test
 	//Test
 	private void addNode(String content, String priority, String deadline) {
-		
+		Node newNode = new Node(content, priority, deadline);
+			if (head == null) {
+				head = newNode;
+			} else {
+				tail.next = newNode;
+				newNode.prev = tail;
+			}
+			tail = newNode;
+			System.out.println("Task added to list!");
 	}
 	
 	private boolean removeNode(int index) {
