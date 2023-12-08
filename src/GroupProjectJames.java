@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Create scanner object to read the users input 
  * Display options (Adding a task, remove a task, display all tasks, display completed tasks, or exit). 
  * Change my method to double linked list, throw and exception that say you can only do 1 through 5.
- * had this code checked out by the proffsor anderson, if anything need to be changed lmk used marvin code and made some changes 
+ * had this code checked out by the proffsor anderson, if anything need to be changed lmk, used marvin code and made some changes 
  * to it, so marvin code is back bone of this code. Also made it start at 0 instead of 1.
  */
 public class GroupProjectJames {
