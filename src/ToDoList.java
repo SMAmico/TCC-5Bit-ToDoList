@@ -50,9 +50,48 @@ class ToDoList {
 	}
 	
 	private boolean removeNode(int index) {
-		//perhaps removes node from current ToDoList
-		//and adds it to the deleted/completed ToDoList ?
-		return false;
+		if (head == null || index < 0) {
+				System.out.println("No tasks to be removed from list.");
+				return false;
+			}
+			if (index == 0) {
+				head = head.next;
+				if (head != null) {
+					head.prev = null;
+				} else {
+					tail = null;
+				}
+				return true;
+			}
+			Node current = head;
+			int currentIndex = 0;
+
+			while (current != null && currentIndex < 0) {
+				current = current.next;
+				currentIndex++;
+			}
+
+			if (current == null) {
+				// index out of bounds
+				return false;
+			}
+			// Remove the node
+			Node prevNode = current.prev;
+			Node nextNode = current.next;
+
+			if (prevNode != null) {
+				prevNode.next = nextNode;
+			} else {
+				head = nextNode;
+			}
+			if (nextNode != null) {
+				nextNode.prev = prevNode;
+			} else {
+				tail = prevNode;
+			}
+			return true;
+		}
+	    }
 	}
 	
 	private void displayToDoList() {
