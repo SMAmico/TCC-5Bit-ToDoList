@@ -22,13 +22,13 @@ class Task {
 }
 
 // Class representing a to-do list with tasks, a task history, and methods to manipulate the task list
-class ToDoList {
+class ToDoList2 {
     Task head;
     Task tail;
     TaskHistory history;
 
     // Constructor to initialize an empty to-do list and a task history
-    public ToDoList() {
+    public ToDoList2() {
         this.head = null;
         this.tail = null;
         this.history = new TaskHistory();

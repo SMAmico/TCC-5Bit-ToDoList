@@ -8,24 +8,23 @@
 6.Have each task be represented by a node with properties like description, priority level, and due date -rexie
 7.Create method to add a new task -hjam
 8.Create method to remove a task  -hjam
-9.Create method to display the current tasks 
-10.Create method to view completed task history
+9.Create method to display the current tasks -seth
+10.Create method to view completed task history -seth
 */ 
 
 class Node{
 	String content;
-	String priority;
+	String title;
 	String deadline;
-	boolean completed;
 	Node prev;
 	Node next;
 	
 	
-	public Node(String content, String priority, String deadline) {
+	public Node(String title, String content, String deadline) {
 		this.content = content;
-		this.priority = priority;
+		this.title = title;
 		this.deadline = deadline;
-		this.completed = false;
+
 		this.prev = null;
 		this.next = null;
 	}
@@ -34,11 +33,12 @@ class Node{
 class ToDoList {
 	Node head;
 	Node tail;
+	private int size = 0;
 //this comment is just a test for my pc being able to edit files and push properly.
 	//another test
 	//Test
-	private void addNode(String content, String priority, String deadline) {
-		Node newNode = new Node(content, priority, deadline);
+	public boolean addNode(String title, String content, String deadline) {
+		Node newNode = new Node(title, content, deadline);
 			if (head == null) {
 				head = newNode;
 			} else {
@@ -46,12 +46,12 @@ class ToDoList {
 				newNode.prev = tail;
 			}
 			tail = newNode;
-			System.out.println("Task added to list!");
+			size++;
+			return true;
 	}
 	
-	private boolean removeNode(int index) {
+	public boolean removeNode(int index) {
 		if (head == null || index < 0) {
-				System.out.println("No tasks to be removed from list.");
 				return false;
 			}
 			if (index == 0) {
@@ -89,21 +89,47 @@ class ToDoList {
 			} else {
 				tail = prevNode;
 			}
+			size--;
 			return true;
 		}
-	    }
+	    
+	public double size() {
+		return size;
 	}
 	
-	private void displayToDoList() {
-		//shows current ToDoList
+	public Node getTask(int index) {//returns a selected node
+		if(index <= size/2) {
+		Node walker = head;
+		for(int i = 0; i < index; i++) {
+			walker = walker.next;
+		}
+		return walker;
+		} else {
+			Node walker = tail;
+			for(int i = size; i > index; i--) {
+				walker = walker.next;
+			}
+			return walker;
+		}
 	}
 	
-	private ToDoList deletedItems() {
-		//returns deleted ToDoList with displayToDoList
+	public boolean isEmpty() {
+		if(head == null && tail == null && size == 0) {
+			return true;
+		}
+		return false;
 	}
 	
-	private void completedTask() {
-		
+	public String getTitle(Node r) {
+		return r.title;
 	}
+	
+	public String getContent(Node r) {
+		return r.content;
+	}
+	public String getDeadline(Node r) {
+		return r.deadline;
+	}
+	
 }
 

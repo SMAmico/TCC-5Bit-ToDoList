@@ -6,7 +6,7 @@ public class Main {
     // Main method where the program execution starts
     public static void main(String[] args) {
         // Creating an instance of the ToDoList class to manage tasks
-        ToDoList toDoList = new ToDoList();
+        ToDoList2 toDoList2 = new ToDoList2();
         // Creating a Scanner object to read user input
         Scanner scanner = new Scanner(System.in);
 
@@ -39,17 +39,17 @@ public class Main {
 
                 case 2:
                     // Removing a task from the list
-                    toDoList.removeTask();
+                    toDoList2.removeTask();
                     break;
 
                 case 3:
                     // Displaying the current tasks in the list
-                    toDoList.viewTasks();
+                    toDoList2.viewTasks();
                     break;
 
                 case 4:
                     // Displaying the history of completed tasks
-                    toDoList.viewTaskHistory();
+                    toDoList2.viewTaskHistory();
                     break;
 
                 case 5:

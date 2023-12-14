@@ -13,8 +13,10 @@ public class GroupProjectJames {
 		// -------------------------------------------
 		// Used a arraylist to show as and example but we need it to be changed to
 		// doublylinked so please change code if need be
-		ArrayList<String> tasks = new ArrayList<>();
-		ArrayList<String> tasksDone = new ArrayList<>();
+		// ArrayList<String> tasks = new ArrayList<>();
+		// ArrayList<String> tasksDone = new ArrayList<>();
+		ToDoList tasks = new ToDoList();// these aren't generic
+		ToDoList tasksDone = new ToDoList();
 		// -------------------------------------------
 		Scanner scanner = new Scanner(System.in);
 		String input = "";
@@ -36,13 +38,18 @@ public class GroupProjectJames {
 
 			if (input.equals("1")) {
 				System.out.println("--------------------------------");
-				System.out.println("Enter a task:");
+				System.out.println("Enter a name for the task:");
 				System.out.println("--------------------------------");
-				String task = scanner.nextLine();
-				tasks.add(task);
-				System.out.println("--------------------------------");
-				System.out.println("Task added.");
-				System.out.println("--------------------------------");
+				String title = scanner.nextLine();
+				System.out.print(" enter some info about it : ");
+				String content = scanner.nextLine();
+				System.out.print(" next, enter a due date : ");
+				String deadline = scanner.nextLine();
+				if (tasks.addNode(title, content, deadline)) {
+					System.out.println("--------------------------------");
+					System.out.println("Task added.");
+					System.out.println("--------------------------------");
+				}
 			} else if (input.equals("2")) {
 				System.out.println("--------------------------------");
 				System.out.println("Enter the index of the task to remove:");
@@ -51,8 +58,9 @@ public class GroupProjectJames {
 				scanner.nextLine(); // consume newline left-over
 				index--; // adjust index to start from 0
 				if (index >= 0 && index < tasks.size()) {
-					String taskDeleted = tasks.remove(index);
-					tasksDone.add(taskDeleted);
+					Node taskDeleted = tasks.getTask(index);
+					tasksDone.addNode(taskDeleted.title, taskDeleted.content, taskDeleted.deadline);
+					tasks.removeNode(index);
 					System.out.println("--------------------------------");
 					System.out.println("Task removed.");
 					System.out.println("--------------------------------");
@@ -66,19 +74,36 @@ public class GroupProjectJames {
 				System.out.println("--------------------------------");
 				System.out.println("All tasks:");
 				System.out.println("--------------------------------");
-				for (int i = 0; i < tasks.size(); i++) {
-					System.out.println("Task:");
-					System.out.println((i + 1) + ". " + tasks.get(i)); 
-					System.out.println("--------------------------------");
-
+				if (!tasks.isEmpty()) {
+					for (int i = 0; i < tasks.size(); i++) {
+						Node listTask = tasks.getTask(i);
+						System.out.println("|Task:");
+						System.out.println("| " + (i + 1) + ". " + listTask.title);
+						System.out.println("|    :" + listTask.content);
+						System.out.println("|        Due by: " + listTask.deadline);
+						System.out.println("--------------------------------");
+					}
+					System.out.println(" ~end of todo list! ~");
+				} else {
+					System.out.println(" List is empty! ");
 				}
 			} else if (input.equals("4")) {
 				System.out.println("--------------------------------");
-				System.out.println("Completed tasks:");
+				System.out.println("Here's what you've completed:");
 				System.out.println("--------------------------------");
-				for (String completed : tasksDone) {
-					System.out.println(completed);
-				}
+				if (!tasksDone.isEmpty()) {
+					for (int i = 0; i < tasksDone.size(); i++) {
+						Node listTask = tasksDone.getTask(i);
+						System.out.println("Task:");
+						System.out.println("| " + (i + 1) + ". " + listTask.title);
+						System.out.println("|    :" + listTask.content);
+						System.out.println("|        Due by: " + listTask.deadline);
+						System.out.println("|--------------------------------");
+					}
+				System.out.println(" ~ that's all you've done! look at you go! ~");
+			} else {
+				System.out.println(" List is empty! ");
+			}
 			} else if (input.equals("5")) {
 				System.out.println("--------------------------------");
 				System.out.println("Exiting.");
