@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 /*
  * Create scanner object to read the users input 
  * Display options (Adding a task, remove a task, display all tasks, display completed tasks, or exit). 
  * Change my method to double linked list, throw and exception that say you can only do 1 through 5.
- * had this code checked out by the proffsor anderson, if anything need to be changed lmk, used marvin code and made some changes 
- * to it, so marvin code is back bone of this code. Also made it start at 0 instead of 1.
+ * had this code checked out by the professor anderson, if anything need to be changed lmk, used marvin code and made some changes 
+ * to it, so marvin's code is back bone of this code. Also made it start at 0 instead of 1.
  */
 public class GroupProjectJames {
 	public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class GroupProjectJames {
 		// Used a arraylist to show as and example but we need it to be changed to
 		// doublylinked so please change code if need be
 		// ArrayList<String> tasks = new ArrayList<>();
-		// ArrayList<String> tasksDone = new ArrayList<>();
+		// ArrayList<String> tasksDone = new ArrayList<>(); original structure types
 		ToDoList tasks = new ToDoList();// these aren't generic
 		ToDoList tasksDone = new ToDoList();
 		// -------------------------------------------
@@ -54,9 +54,9 @@ public class GroupProjectJames {
 				System.out.println("--------------------------------");
 				System.out.println("Enter the index of the task to remove:");
 				System.out.println("--------------------------------");
-				int index = scanner.nextInt();
+				int index = scanner.nextInt()-1;
 				scanner.nextLine(); // consume newline left-over
-				index--; // adjust index to start from 0
+				//index--; // adjust index to start from 0
 				if (index >= 0 && index < tasks.size()) {
 					Node taskDeleted = tasks.getTask(index);
 					tasksDone.addNode(taskDeleted.title, taskDeleted.content, taskDeleted.deadline);
